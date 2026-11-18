@@ -59,13 +59,21 @@ copy was performed during setup; it is not repeated when the app starts.
 The local PostgreSQL fallback now requires `DB_PASSWORD` in the environment
 instead of a password stored in source code.
 
-## Website hosting still to complete
+## Live website
 
-The database is hosted on Neon. The assignment also requires hosting the
-Express app itself to give visitors a public website URL.
-The server already accepts `PORT` and `DATABASE_URL` from its hosting environment.
-Set `SESSION_SECRET` on the host as well. Use the Neon `DATABASE_URL` from
-`.env.local` as a private environment variable on the app host.
+Website: https://country-catalog-hj5j.onrender.com
+
+The Express app runs on Render's free plan, connected to the Neon production
+database. Render service: `country-catalog` (`srv-dbuia0ajnfac73db3fug`).
+It builds from the `main` branch of https://github.com/Jammezy/country_catalog
+using `npm ci && npm run build`, then starts with `npm start`.
+`DATABASE_URL` and `SESSION_SECRET` are private Render environment variables.
+Render supplies `PORT`. Pushing changes to `main` automatically deploys them.
+
+The public HTTPS website passed login, country listing, add, edit, delete,
+logout, image/script loading, and logged-out access checks. Test changes were
+confirmed in Neon and removed afterward. A visual map check remains a manual
+browser check.
 
 Before submitting, test the public URL: sign in, add a country, edit it, open
 its map, delete it after confirming, and log out. Then confirm that opening
